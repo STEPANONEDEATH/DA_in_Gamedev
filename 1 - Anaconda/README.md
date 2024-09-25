@@ -19,8 +19,6 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Структура отчета
-
 ## Цель работы
 - Установить необходимое ПО для работы с курсом: "Анализ данных в разработке игр"
 
