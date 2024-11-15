@@ -1,5 +1,5 @@
-# Экономика - Нужно больше золота
-Отчет по лабораторной работе #2 выполнил(а):
+# Баланс в играх - Идеальный баланс
+Отчет по лабораторной работе #3 выполнил(а):
 - Сидоров Степан Павлович
 - РИ-230930
 
@@ -31,197 +31,69 @@
 - Выводы.
 
 ## Цель работы
-Познакомиться с программными средствами для передачи данных между инструментами Google, Python и Unity с помощью API 
+Разработать / изменить баланс сложностей для 10 уровней игры Dragon Picker
 
-## Задание 1
-### Рассмотреть экономическую систему какой-нибудь игры на примере какого-то ресурса.
-  Экономическая система в Red Dead Redemption 2 имеет несколько ключевых аспектов, которые создают уникальную динамику взаимодействия с деньгами. Она отражает экономику Дикого Запада конца XIX века, где важную роль играют наличные деньги, торговля, бартер и добыча ресурсов.
-  
-  Основные элементы схемы экономической системы в игре:
+## Задание 1. Начало работы
+### Ознакомиться с презентацией третьей лекции. Оценить структуру игры Dragon Picker. Скачать и ознакомиться с прототипом игры Dragon Picker на Unity. Запустите игровую сцену, проанализируйте движение дракона:
+### Какие переменные влияют на движение дракона на сцене? Укажите эти переменные
+— На движение дракона влияют параметры: скорости и рандомное значение, отвечающее за то, будет ли дракон менять траекторию в определенный момент времени
 
-  1. Добыча денег:
-     Основные способы получения дохода:
-      - Миссии и задания: Выполнение сюжетных и побочных квестов (ограбления, защита ферм, контракты на ликвидацию).
-      - Ограбления: Игрок может грабить поезда, дилижансы, магазины и даже банки.
-      - Охота и рыбалка: Добыча шкур, мяса, рыбы и их продажа торговцам.
-      - Сбор растений и материалов: Травы, ингредиенты и редкие предметы могут продаваться за деньги.
-      - Воровство: Обворовывание NPC, домов, сундуков, карманов.
-      - Игра в азартные игры: Покер и другие игры в салунах также могут принести прибыль (или убытки).
-      - Продажа краденого: Через скупщиков можно продавать украденные вещи и награбленное.
-  2. Торговля и экономика:
-      - Покупка товаров: Деньги можно потратить на оружие, патроны, одежду, еду, снаряжение для лошадей и лагеря.
-      - Динамическая экономика: Цены на товары могут варьироваться в зависимости от региона. Например, цены на шкуры и мясо могут быть выше в местах, где эти ресурсы редки.
-      - Бартер и обмен: В некоторых ситуациях игрок может менять предметы или ресурсы вместо денег.
-      - Скупщики: Они покупают у игрока краденое и уникальные предметы, часто по более низким ценам, чем обычные торговцы.
-  3. Расходы денег:
-      - Поддержание лагеря: У игрока есть возможность вкладывать деньги в улучшение лагеря банды (запасы, медикаменты, патроны).
-      - Оплата штрафов и взяток: Если на игрока объявлена награда за преступления, можно заплатить штраф, чтобы снять обвинения.
-      - Модификации и улучшения: Можно улучшать оружие, одежду и снаряжение лошади, а также покупать редкие предметы.
-      - Потребности героя: Еда, лекарства, одежда и другие предметы необходимы для поддержания здоровья и стамины персонажа.
-  4. Влияние репутации на экономику:
-      - Карма: Действия игрока влияют на репутацию (карму), которая, в свою очередь, может влиять на цены. Высокая карма даёт скидки в магазинах, низкая — может привести к враждебному отношению со стороны NPC.
-  5. Система наград и штрафов:
-      - За совершение преступлений на игрока может быть назначена награда. Это влияет на его взаимодействие с миром, так как охотники за головами и законники будут охотиться за ним. Чтобы избавиться от награды, игроку нужно или заплатить штраф, или скрываться от властей.
-      - Таким образом, деньги в Red Dead Redemption 2 играют центральную роль как в прогрессе игрока, так и в повествовательной части, отражая экономику того времени, где добыча, торговля и воровство были частью повседневной жизни. 
-
-  Суть игры заключается в том, что мы являемся группой бандитов и играем за Артура Моргана. 
-  В течении всей игры наша группа пытается найти способ выживать и тем самым пришли к идеи грабить банки.
-  
-  ![251D3B0C00001](https://github.com/user-attachments/assets/5942d614-585b-4d20-89ce-d3f344d46942)
-  В игре достаточно много переменных, но основой всех являются деньги либо золотые слитки.
+### Какие переменные влияют на сложность игры на сцене? Укажите эти переменные
+— На сложность игры влияют параметры: скорость дракона, частота появления яйца, скорость падения яйца, количество щитов, частота изменения направления движения дракона и размер щита
 
 ## Задание 2
-### Реализация кода для переноса валюты 
-Отредактировал 
-Код Python-файла данного изначально, до необходимого вида. 
-```Python
-import gspread
-import random
-
-# Авторизация с помощью файла ключей
-gc = gspread.service_account(filename='unitydatascience-436705-a152df01f67a.json')
-
-# Открытие Google Таблицы
-sh = gc.open("UnityScience")
-
-# Данные об игровой валюте в RDR2 (вы можете изменять или добавлять типы валюты)
-currency_types = [
-    "Доллары",
-    "Золотые слитки",
-    "Ценные бумаги",
-    "Охотничьи билеты",
-    "Медвежьи шкуры"
-]
-
-# Генерация случайных данных для количества валюты и её стоимости в золоте
-currency_data = []
-for _ in range(len(currency_types)):
-    amount = random.randint(50, 10000)  # Случайное количество валюты
-    gold_value = round(random.uniform(0.5, 10), 2)  # Случайная стоимость в золоте
-    currency_data.append((amount, gold_value))
-
-# Заголовки столбцов
-sh.sheet1.update('A1', 'Тип валюты')
-sh.sheet1.update('B1', 'Количество')
-sh.sheet1.update('C1', 'Стоимость в золоте')
-
-# Заполнение таблицы данными о валюте
-for i, (currency_type, data) in enumerate(zip(currency_types, currency_data), start=2):
-    amount, gold_value = data
-    
-    # Заполнение данных в таблицу
-    sh.sheet1.update(f'A{i}', currency_type)  # Тип валюты
-    sh.sheet1.update(f'B{i}', str(amount))    # Количество
-    sh.sheet1.update(f'C{i}', str(gold_value).replace('.', ','))  # Стоимость в золоте
-    
-    # Вывод данных для проверки
-    print(f'{currency_type}: Количество = {amount}, Стоимость в золоте = {gold_value}')
-
-print("Данные успешно внесены в таблицу.")
-```
-
-### Результат
-   ![image](https://github.com/user-attachments/assets/fbf2790d-cb4c-47a2-b692-53fefc20b978)
-
+### Начало работы с шаблоном google-таблицы для балансировки игры 
+### Отметьте, как может быть использован шаблон таблицы для визуализации изменения уровней сложности в игре Dragon Picker?
+— Шаблон может быть использован для того, чтобы отследить как меняются переменные "баланса" в зависимости от каждого уровня. Так же для удобства их можно визуализировать графиками.
 
 ## Задание 3
-### Немного меняем значения, оставив те же звуки, т.к. не это важно, получаем такой код.
-Однако стоит сразу сказать, что было бы неплохо поменять например код для Python, так как код на шарпах требует простой таблицы, а я вывожу код с названиями. 
-Так что либо красота, либо работоспособность кода.
-``` C#
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
-using SimpleJSON;
+### №1. Предложите вариант изменения найденных переменных для 10 уровней в игре. Визуализируйте изменение уровня сложности в таблице. 
+```Python
 
-public class NewBehaviourScript : MonoBehaviour
-{
-    public AudioClip goodSpeak;
-    public AudioClip normalSpeak;
-    public AudioClip badSpeak;
-    private AudioSource selectAudio;
-    private Dictionary<string, float> dataSet = new Dictionary<string, float>();
-    private bool statusStart = false;
-    private int i = 1;
+import gspread
+import numpy as np
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(GoogleSheets());
-    }
+gc = gspread.service_account(filename='dragonpicker-8110f907cb46.json')
+sh = gc.open("DragonPickerAnalis")
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (dataSet["Mon_" + i.ToString()] <= 2 & statusStart == false & i != dataSet.Count)
-        {
-            StartCoroutine(PlaySelectAudioBad());
-            Debug.Log(dataSet["Mon_" + i.ToString()]);
-        }
+def update_indexes():
+    for i in range(1, 11):
+        sh.sheet1.update_acell(f"A{i+1}", str(i))
 
-        if (dataSet["Mon_" + i.ToString()] > 2 & dataSet["Mon_" + i.ToString()] < 5 & statusStart == false & i != dataSet.Count)
-        {
-            StartCoroutine(PlaySelectAudioNormal());
-            Debug.Log(dataSet["Mon_" + i.ToString()]);
-        }
+def update_dragon_speed(percent: str):
+    current_speed = float(sh.sheet1.acell("B2").value)
+    multiplier = 1 + float(percent) / 100
+    for i in range(3, 12):
+        current_speed *= multiplier
+        formatted_speed = f"{int(current_speed)},{int((current_speed - int(current_speed)) * 100)}"
+        sh.sheet1.update_acell(f"B{i}", formatted_speed)
 
-        if (dataSet["Mon_" + i.ToString()] >= 5 & statusStart == false & i != dataSet.Count)
-        {
-            StartCoroutine(PlaySelectAudioGood());
-            Debug.Log(dataSet["Mon_" + i.ToString()]);
-        }
-    }
+def update_time_egg_drop(percent: str):
+    tail = 1 - int(percent) / 100
+    current_time = float(sh.sheet1.acell("C2").value)
+    for i in range(3, 12):
+        current_time *= tail
+        formatted_time = f"{int(current_time)},{int((current_time - int(current_time)) * 100)}"
+        sh.sheet1.update_acell(f"C{i}", formatted_time)
 
-    IEnumerator GoogleSheets()
-    {
-        UnityWebRequest curentResp = UnityWebRequest.Get("https://sheets.googleapis.com/v4/spreadsheets/135XFmHPcCenptt4Zt-rWGok9bUSEWSZBG5avPgRB73U/values/Лист1?key=AIzaSyDcEcDttagZaxuxE4hBWWKxG0OH3aVDlR4");
-        yield return curentResp.SendWebRequest();
-        string rawResp = curentResp.downloadHandler.text;
-        var rawJson = JSON.Parse(rawResp);
-        foreach (var itemRawJson in rawJson["values"])
-        {
-            var parseJson = JSON.Parse(itemRawJson.ToString());
-            var selectRow = parseJson[0].AsStringList;
-            dataSet.Add(("Mon_" + selectRow[0]), float.Parse(selectRow[2]));
-        }
-    }
+def update_shields_count():
+    current_count = int(sh.sheet1.acell("E2").value)
+    repeat = 1
+    for i in range(3, 12):
+        sh.sheet1.update_acell(f"E{i}", str(current_count))
+        repeat += 1
+        if repeat == 3:
+            current_count -= 1
+            repeat = 0
 
-    IEnumerator PlaySelectAudioGood()
-    {
-        statusStart = true;
-        selectAudio = GetComponent<AudioSource>();
-        selectAudio.clip = goodSpeak;
-        selectAudio.Play();
-        yield return new WaitForSeconds(3);
-        statusStart = false;
-        i++;
-    }
-    IEnumerator PlaySelectAudioNormal()
-    {
-        statusStart = true;
-        selectAudio = GetComponent<AudioSource>();
-        selectAudio.clip = normalSpeak;
-        selectAudio.Play();
-        yield return new WaitForSeconds(3);
-        statusStart = false;
-        i++;
-    }
-    IEnumerator PlaySelectAudioBad()
-    {
-        statusStart = true;
-        selectAudio = GetComponent<AudioSource>();
-        selectAudio.clip = badSpeak;
-        selectAudio.Play();
-        yield return new WaitForSeconds(4);
-        statusStart = false;
-        i++;
-    }
-}
-
+if __name__ == "__main__":
+    update_indexes()
+    update_dragon_speed("20")
+    update_time_egg_drop("10")
+    update_shields_count()
 ```
+https://docs.google.com/spreadsheets/d/1GmpemND9ZYDorn7ckyxHTwsnB5gb_BmIGuvw1UWP2JA/edit?usp=sharing
 
- 
 
 ![image](https://github.com/user-attachments/assets/5df28e1a-d96f-40fd-a109-2cba5c02cc1d)
 
