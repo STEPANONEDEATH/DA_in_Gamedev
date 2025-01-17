@@ -152,7 +152,7 @@ public class LoadSettings : MonoBehaviour
 
     IEnumerator GoogleSheets()
     {
-        string url = "https://sheets.googleapis.com/v4/spreadsheets/1GmpemND9ZYDorn7ckyxHTwsnB5gb_BmIGuvw1UWP2JA/values/Лист1?key=AIzaSyBzuQEHb02mqr_SodKQpAWk5PL6YdZdXAc";
+        string url = "https://sheets.googleapis.com/v4/spreadsheets/1GmpemND9ZYDorn7ckyxHTwsnB5gb_BmIGuvw1UWP2JA/values/Лист1?key=someprivatekey";
         UnityWebRequest curentResp = UnityWebRequest.Get(url);
         yield return curentResp.SendWebRequest();
 
