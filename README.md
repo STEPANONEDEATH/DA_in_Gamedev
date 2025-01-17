@@ -1,7 +1,8 @@
 # **Курс: Анализ данных в разработке игр**
 
 Курс по ссылочке: [тык](https://bigdigital-gamelab.ru/analiz-dannyh/)
-![image](https://github.com/user-attachments/assets/43130aa3-8b0a-4c01-b73a-cac0894c1f0a)
+![da](https://github.com/user-attachments/assets/346e222a-9f9e-4319-9efb-b034c05e23b2)
+
 
 ## Powered by
 
